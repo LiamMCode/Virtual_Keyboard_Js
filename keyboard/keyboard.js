@@ -1,21 +1,25 @@
 const Keyboard = {
-    elements: {
+    elements: 
+    {
         main: null,
         keysContainer: null,
         keys: []
     },
 
-    eventHandlers: {
+    eventHandlers: 
+    {
         oninput: null,
         onclose: null
     },
 
-    properties: {
+    properties: 
+    {
         value: "",
         capsLock: false
     },
 
-    init() {
+    init() 
+    {
         // Create main elements
         this.elements.main = document.createElement("div");
         this.elements.keysContainer = document.createElement("div");
@@ -41,7 +45,8 @@ const Keyboard = {
         });
     },
 
-    _createKeys() {
+    _createKeys() 
+    {
         const fragment = document.createDocumentFragment();
         const keyLayout = [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
@@ -64,7 +69,8 @@ const Keyboard = {
             keyElement.setAttribute("type", "button");
             keyElement.classList.add("keyboard__key");
 
-            switch (key) {
+            switch (key) 
+            {
                 case "backspace":
                     keyElement.classList.add("keyboard__key--wide");
                     keyElement.innerHTML = createIconHTML("backspace");
@@ -133,7 +139,8 @@ const Keyboard = {
 
             fragment.appendChild(keyElement);
 
-            if (insertLineBreak) {
+            if (insertLineBreak) 
+            {
                 fragment.appendChild(document.createElement("br"));
             }
         });
@@ -141,30 +148,37 @@ const Keyboard = {
         return fragment;
     },
 
-    _triggerEvent(handlerName) {
-        if (typeof this.eventHandlers[handlerName] == "function") {
+    _triggerEvent(handlerName) 
+    {
+        if (typeof this.eventHandlers[handlerName] == "function") 
+        {
             this.eventHandlers[handlerName](this.properties.value);
         }
     },
 
-    _toggleCapsLock() {
+    _toggleCapsLock() 
+    {
         this.properties.capsLock = !this.properties.capsLock;
 
-        for (const key of this.elements.keys) {
-            if (key.childElementCount === 0) {
+        for (const key of this.elements.keys) 
+        {
+            if (key.childElementCount === 0) 
+            {
                 key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
             }
         }
     },
 
-    open(initialValue, oninput, onclose) {
+    open(initialValue, oninput, onclose) 
+    {
         this.properties.value = initialValue || "";
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
         this.elements.main.classList.remove("keyboard--hidden");
     },
 
-    close() {
+    close() 
+    {
         this.properties.value = "";
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
